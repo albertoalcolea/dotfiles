@@ -9,7 +9,7 @@ vim tagbar requirements:
 
 - `exuberant-ctags` or `universal-ctags`
 
-bashrc requirements:
+bash requirements:
 
-- bash-completion
-- notify-send
+- `bash-completion`
+- `notify-send`
