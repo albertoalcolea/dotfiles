@@ -5,6 +5,11 @@ My personal vim, tmux, shells, etc configuration files.
 
 ## Requirements
 
-vim tagbar requires:
+vim tagbar requirements:
 
 - `exuberant-ctags` or `universal-ctags`
+
+bashrc requirements:
+
+- bash-completion
+- notify-send
