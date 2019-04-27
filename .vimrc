@@ -41,8 +41,8 @@ call plug#end()
 syntax enable           " Enable syntax highlighting
 colorscheme atom-dark-256
 
-"set tabstop=4           " numbers of spaces of tab character
-"set shiftwidth=4        " numbers of spaces to (auto)indent
+set tabstop=4           " numbers of spaces of tab character
+set shiftwidth=4        " numbers of spaces to (auto)indent
 
 "set wrap                " right border block
 set hlsearch            " highlight searches
