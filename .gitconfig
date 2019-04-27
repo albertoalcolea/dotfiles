@@ -1,0 +1,15 @@
+[user]
+	name = Alberto Alcolea
+	email = albertoalcolea@gmail.com
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[alias]
+	dt = difftool --dir-diff
+	s = status -s
