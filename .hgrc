@@ -1,0 +1,14 @@
+[ui]
+username = Alberto Alcolea <albertoalcolea@gmail.com>
+verbose = True
+merge = meld
+
+[extensions]
+hgext.extdiff = 
+shelve = 
+
+[extdiff]
+cmd.meld =
+
+[merge-tools]
+meld.args = $local $other
