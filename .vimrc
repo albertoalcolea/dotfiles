@@ -34,6 +34,8 @@ Plug 'gosukiwi/vim-atom-dark'
 " Initialize plugin system
 call plug#end()
 
+" NERDTree config
+let NERDTreeIgnore=['\.pyc$', '\.orig$']
 
 
 " === GENERAL ===
