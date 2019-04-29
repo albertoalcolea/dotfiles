@@ -40,22 +40,32 @@ let NERDTreeIgnore=['\.pyc$', '\.orig$']
 
 " === GENERAL ===
 
+" Color
 syntax enable           " Enable syntax highlighting
 colorscheme atom-dark-256
 
+" Encoding
+set fileencoding=utf-8  " UTF-8 by default
+set encoding=utf-8
+
+" Indentation
 set tabstop=4           " numbers of spaces of tab character
 set shiftwidth=4        " numbers of spaces to (auto)indent
+set autoindent          " copy indent from current line when starting a new line 
+set noexpandtab         " tabs always
 
+aug python
+    " ftype/python.vim overwrites this
+    au FileType python setlocal tabstop=4 shiftwidth=4 noexpandtab
+aug end
+
+" Other settings
 "set wrap                " right border block
 set hlsearch            " highlight searches
 set number              " show line number
 set cursorline          " highligh current line
 set showmatch           " Show matching parenthesis
 set nofoldenable        " disable folding
-
-set fileencoding=utf-8  " UTF-8 by default
-set encoding=utf-8
-
 
 
 " === SHORTCUTS ===
