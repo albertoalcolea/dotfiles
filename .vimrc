@@ -67,6 +67,12 @@ set cursorline          " highligh current line
 set showmatch           " Show matching parenthesis
 set nofoldenable        " disable folding
 
+" Clipboard
+set clipboard=unnamed
+if has('unnamedplus')
+  set clipboard=unnamed,unnamedplus
+endif
+
 
 " === SHORTCUTS ===
 
