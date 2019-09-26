@@ -13,3 +13,4 @@
 [alias]
 	dt = difftool --dir-diff
 	s = status -s
+	b = ! git branch | grep '*'
