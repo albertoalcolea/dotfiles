@@ -12,5 +12,5 @@
 	tool = meld
 [alias]
 	dt = difftool --dir-diff
-	s = status -s
+	s = status -sb
 	b = ! git branch | grep '*'
