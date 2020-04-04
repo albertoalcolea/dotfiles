@@ -11,9 +11,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -l'
+alias la='ls -lA'
+alias l='ls -C'
 
 # Colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -23,7 +23,13 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Utilities
-alias slime='subl'
+if [ -x "$(command -v subl3)" ]; then
+	alias slime='subl3'
+else
+	alias slime='subl'
+fi
+alias mutt='neomutt'
+alias view='vim -R'
 alias fuckswap='sudo swapoff -a && sudo swapon -a && echo "OK"'
 
 # SSH shortcuts
