@@ -23,7 +23,6 @@ if [ -n "$required" ]; then
 	exit 1
 fi
 
-for symlink in bash git mercurial tmux vim; do
-	#stow -v -t $HOME $symlink
-	stow -v -t $HOME/test $symlink
+for symlink in bash editorconfig git mercurial tmux vim; do
+	stow -v -t $HOME $symlink
 done
