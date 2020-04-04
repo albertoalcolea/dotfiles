@@ -10,3 +10,9 @@ insert_final_newline = true
 
 [*.js]
 indent_size = 2
+
+[*.html]
+indent_size = 2
+
+[*.{css,scss}]
+indent_size = 2
