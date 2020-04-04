@@ -1,16 +1,28 @@
 [user]
 	name = Alberto Alcolea
 	email = albertoalcolea@gmail.com
+
+[core]
+	excludesfile = ~/.gitignore
+
 [color]
 	status = auto
 	branch = auto
 	diff = auto
 	interactive = auto
+
 [diff]
 	tool = meld
+
 [merge]
 	tool = meld
+
+[fetch]
+	prune = true
+
 [alias]
 	dt = difftool --dir-diff
 	s = status -sb
-	b = ! git branch | grep '*'
+	b = !git branch | grep '*'
+	undo = reset --soft HEAD~1
+	glog = log --graph --oneline
