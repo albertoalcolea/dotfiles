@@ -24,9 +24,9 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 # Utilities
 if [ -x "$(command -v subl3)" ]; then
-	alias slime='subl3'
+	alias sbl='subl3'
 else
-	alias slime='subl'
+	alias sbl='subl'
 fi
 alias mutt='neomutt'
 alias view='vim -R'

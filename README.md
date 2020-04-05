@@ -19,7 +19,7 @@ Execute the `setup` script:
 ./setup
 ```
 
-Note: if any of the files to install was already in your system the script will notify you that it is necessary to rename or remove them before to execute the script.
+Note: if any of the files to install was already in your system the script will ask you if you want to overwrite them.
 
 Run `vim` and execute `PlugInstall` to install all vim plugins.
 
