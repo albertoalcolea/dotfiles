@@ -1,10 +1,10 @@
-# Last command return code 
+# Last command return code
 __prompt_char() {
 	if [ $? -eq 0 ]; then
 		echo -e "\[\033[01;32m\]\$\[\033[00m\]"
 	else
 		echo -e "\[\033[01;31m\]\$\[\033[00m\]"
-	fi	
+	fi
 }
 
 # Python virtual env
@@ -21,9 +21,9 @@ __git_info() {
 
 	local status=$(git status --porcelain=v2 --branch)
 	local head=$(echo "$status" | sed -n 's/^# branch.head \(.*\)$/\1/p')
-	
+
 	# Verify if HEAD points to branch or to single commit
-	if [ "$branch" = "(detached)" ]; then
+	if [ "$head" = "(detached)" ]; then
 		# Use commit id in short format as branch id
 		local branch=$(echo "$status" | sed -n 's/^# branch.oid \(.\{7\}\).*$/\1/p')
 	else
@@ -34,9 +34,9 @@ __git_info() {
 		fi
 	fi
 
-	# Verify index status (staging area) checking the first char: 
-	#   1->changed 
-	#   2->renamed or copied 
+	# Verify index status (staging area) checking the first char:
+	#   1->changed
+	#   2->renamed or copied
 	#   u->unmerged
 	#   ?->untracked
 	#   !->ignored
