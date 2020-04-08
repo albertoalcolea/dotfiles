@@ -1,0 +1,3 @@
+#!/bin/sh
+
+glxinfo | egrep "OpenGL vendor|OpenGL renderer*"

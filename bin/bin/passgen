@@ -1,0 +1,69 @@
+#! /bin/bash
+#
+# Version: 1.0
+# Date: 31-07-2013
+# Author: Alberto Alcolea
+#
+
+usage() {
+	echo "Usage: $(basename $0) [OPTIONS] [LENGTH]"
+	echo "  Options:"
+	echo "    -h, --help: this help."
+	echo "    -l: lower case characters"
+	echo "    -d: digits"
+	echo "    -u: upper case characters"
+	echo "    -o: other printable characters"
+	echo
+	echo "Default options: -ld 6"
+}
+
+# Default options
+length=6
+set=''
+
+# Get the args
+while [ $# -gt 0 ]
+do
+	if [ "$1" = '-h' ] || [ "$1" = '--help' ]
+	then
+		usage
+		exit 0
+
+	elif [[ "$1" =~ ^-[lduo]+$ ]]
+	then
+		if [[ "$1" =~ l ]]
+		then
+			set=$set'[:lower:]'
+		fi
+		if [[ "$1" =~ d ]]
+		then
+			set=$set'[:digit:]'
+		fi
+		if [[ "$1" =~ u ]]
+		then
+			set=$set'[:upper:]'
+		fi
+		if [[ "$1" =~ o ]]
+		then
+			set=$set'[:punct:]'
+		fi
+
+	elif [ $# -eq 1 ] && [[ "$1" =~ ^[0-9]+$ ]]
+	then
+		length="$1"
+
+	else
+		usage
+		exit 1
+	fi
+	shift
+done
+
+# Default characters set
+if [ -z $set ]
+then
+	set='[:lower:][:digit:]'
+fi
+
+# Print the password
+cat /dev/urandom | tr -dc $set | fold -w $length | head -n 1

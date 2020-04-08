@@ -34,3 +34,5 @@ bash requirements:
 
 - `bash-completion`
 - `notify-send`
+
+Some scripts in bin folder require extra dependencies

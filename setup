@@ -8,6 +8,10 @@ is_bash_completion_installed() {
 	test -f /usr/share/bash-completion/bash_completion || test -f /etc/bash_completion
 }
 
+print_ok() {
+	echo -e "\033[01;32m$1\033[00m"
+}
+
 required=()
 
 is_installed vim || required+=(vim)
@@ -22,6 +26,9 @@ if [ -n "$required" ]; then
 	exit 1
 fi
 
-for src in bash editorconfig git mercurial tmux vim; do
+for src in bash bin editorconfig git mercurial tmux vim; do
 	cp -irvT $src $HOME
 done
+
+echo
+print_ok "Dotfiles installed correctly"

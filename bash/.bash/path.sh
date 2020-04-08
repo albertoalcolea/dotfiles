@@ -1,5 +1,5 @@
 # Local bin
-export PATH=$PATH:~/src/bin
+export PATH=$PATH:~/bin
 
 # JAVA_HOME
 #export JAVA_HOME=/opt/jdk

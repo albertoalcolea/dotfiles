@@ -1,0 +1,16 @@
+#!/bin/bash
+
+icon_enabled=$(geticon "scalable/devices/input-touchpad-symbolic.svg")
+icon_disabled=$(geticon "scalable/status/touchpad-disabled-symbolic.svg")
+
+device_id=$(xinput list | grep -i TouchPad | cut -f 2 | sed -rn 's/id=([[:digit:]]+)/\1/p')
+status=$(xinput list-props "$device_id" | grep "Device Enabled" | tr -s '\t' | cut -f 3)
+
+if [[ "$status" -eq 1 ]]; then
+  xinput disable "$device_id"
+  notify-send disabled \touchpad -i $icon_disabled --hint=int:transient:1
+
+else
+  xinput enable "$device_id"
+  notify-send enabled \touchpad -i $icon_enabled --hint=int:transient:1
+fi

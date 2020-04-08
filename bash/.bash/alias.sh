@@ -32,6 +32,3 @@ alias mutt='neomutt'
 alias view='vim -R'
 alias fuckswap='sudo swapoff -a && sudo swapon -a && echo "OK"'
 
-# SSH shortcuts
-#alias sshxyz='ssh -i cert_path user@xyz'
-
