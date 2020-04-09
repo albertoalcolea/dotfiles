@@ -1,3 +1,15 @@
-[submodule "vim/.vim/vim-plug"]
-	path = vim/.vim/vim-plug
+[submodule "modules/numix-icon-theme"]
+	path = modules/numix-icon-theme
+	url = https://github.com/numixproject/numix-icon-theme.git
+[submodule "modules/numix-icon-theme-circle"]
+	path = modules/numix-icon-theme-circle
+	url = https://github.com/numixproject/numix-icon-theme-circle.git
+[submodule "modules/numix-icon-theme-square"]
+	path = modules/numix-icon-theme-square
+	url = https://github.com/numixproject/numix-icon-theme-square.git
+[submodule "modules/numix-folders"]
+	path = modules/numix-folders
+	url = https://github.com/numixproject/numix-folders.git
+[submodule "modules/vim-plug"]
+	path = modules/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
