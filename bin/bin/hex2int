@@ -1,0 +1,44 @@
+#!/usr/bin/python
+import sys
+import os
+
+def usage():
+	prog_name = os.path.basename(sys.argv[0])
+	print('Usage:', prog_name, '[-l] hex_value')
+	print('  Options:')
+	print('    -l little endian')
+	print()
+	print('  Examples:')
+	print('   ', prog_name, ' "00 0a bc d3"')
+	print('   ', prog_name, ' 00 0a bc d3')
+	print('   ', prog_name, ' -l 00 0a bc d3')
+
+def hex_to_int(hexvals, little_endian=False):
+	if little_endian:
+		hexvals.reverse()
+	return int(''.join(hexvals), 16)
+
+def main():
+	if len(sys.argv) < 2:
+		usage()
+		exit(1)
+	elif sys.argv[1] == '-h':
+		usage()
+		exit(0)
+
+	if sys.argv[1] == '-l':
+		little_endian = True
+		args = sys.argv[2:]
+	else:
+		little_endian = False
+		args = sys.argv[1:]
+
+	hexvals = []
+	for arg in args:
+		hexvals.extend(arg.split())
+	intval = hex_to_int(hexvals, little_endian)
+	print(intval)
+
+
+if __name__ == '__main__':
+	main()
