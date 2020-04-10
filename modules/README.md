@@ -8,4 +8,4 @@ External git modules used as part of my dotfiles. They include:
 ## Usage
 They are symlinked to the final path and they will be correctly installed with the `setup` script.
 
-Make sure to clone this repo with the ``--recurse-submodules` flag.
+Make sure to clone this repo with the `--recurse-submodules` flag.

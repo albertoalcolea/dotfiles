@@ -1,6 +1,9 @@
 # Local bin
 export PATH=$PATH:~/bin
 
+# IntelliJ IDEA custom properties
+export IDEA_PROPERTIES=~/.IdeaIC/idea.properties
+
 # JAVA_HOME
 #export JAVA_HOME=/opt/jdk
 #export PATH=$PATH:$JAVA_HOME/bin
