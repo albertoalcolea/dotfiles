@@ -1,0 +1,5 @@
+# Register external definitions
+source ~/.mutt/mutt.rc
+source ~/.mutt/colors.rc
+source ~/.mutt/macros.rc
+source ~/.mutt/ml_skel.rc  # Modify with your personal mailbox settings file

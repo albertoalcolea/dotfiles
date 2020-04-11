@@ -1,0 +1,12 @@
+# Common bindings
+macro index \\ "<vfolder-from-query>" "Search mailbox"
+
+# Mailbox swap
+macro index c <change-folder>? "Show incoming mailboxes list"
+bind index y change-folder
+
+# Sidebar bindins
+bind index \CU sidebar-toggle-visible
+bind index \CP sidebar-prev
+bind index \CN sidebar-next
+bind index \CO sidebar-open
