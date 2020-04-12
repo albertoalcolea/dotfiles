@@ -26,7 +26,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 
 " Class outline viewer for Vim
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar',  { 'on': 'TagbarToggle' }
 
 " Atom Dark colorscheme
 Plug 'gosukiwi/vim-atom-dark'
