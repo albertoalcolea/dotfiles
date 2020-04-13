@@ -14,12 +14,12 @@ print_ok() {
 
 required=()
 
+is_installed stow || required+=(stow)
 is_installed vim || required+=(vim)
 is_installed tmux || required+=(tmux)
 is_installed git || required+=(git)
 is_installed notify-send || required+=(libnotify)
 is_installed ctags || required+=(ctags)
-is_installed fzf || required+=(fzf)
 is_bash_completion_installed || required+=(bash-completion)
 
 if [ -n "$required" ]; then
