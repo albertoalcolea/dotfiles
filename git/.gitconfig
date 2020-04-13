@@ -3,7 +3,7 @@
 	email = albertoalcolea@gmail.com
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 
 [color]
 	status = auto
@@ -21,6 +21,7 @@
 	prune = true
 
 [alias]
+	co = checkout
 	dt = difftool --dir-diff
 	s = status -sb
 	b = !git branch | grep '*'
