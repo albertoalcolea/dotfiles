@@ -30,3 +30,5 @@ shopt -s checkwinsize
 export VISUAL=/usr/bin/vim
 export EDITOR="$VISUAL"
 
+# Load fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

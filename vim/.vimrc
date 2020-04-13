@@ -22,8 +22,9 @@ Plug 'vim-syntastic/syntastic'
 " Multicursor for vim
 Plug 'terryma/vim-multiple-cursors'
 
-" Super searching with ctrl+p
-Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+" fzf fuzzy finder wrapper for vim
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all', 'on': 'FZF' }
+Plug 'junegunn/fzf.vim'
 
 " Class outline viewer for Vim
 Plug 'majutsushi/tagbar',  { 'on': 'TagbarToggle' }
@@ -67,7 +68,8 @@ endif
 let mapleader=","
 
 map <C-x> :NERDTreeToggle<CR>
-map <C-p> :CtrlP<CR>
+map <C-p> :FZF<CR>
 
 nmap <leader>t :TagbarToggle<CR>
-
+nmap <leader>T :Tags<CR>
+nmap <leader>b :call fzf#vim#tags(expand('<cword>'))<CR>
