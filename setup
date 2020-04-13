@@ -27,8 +27,8 @@ if [ -n "$required" ]; then
 	exit 1
 fi
 
-for src in bash bin editorconfig git icons idea mercurial mutt sublime tmux vim; do
-	cp -irvT $src $HOME
+for symlink in bash bin editorconfig git icons idea mercurial mutt sublime tmux vim; do
+	stow -v -t $HOME $symlink
 done
 
 echo
