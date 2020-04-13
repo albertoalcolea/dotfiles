@@ -10,7 +10,7 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+# Some more ls aliases
 alias ll='ls -l'
 alias la='ls -lA'
 alias l='ls -C'
@@ -22,13 +22,16 @@ alias l='ls -C'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# URL-encode strings
+alias urlencode='python -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
+
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
 # Utilities
 if [ -x "$(command -v subl3)" ]; then
-	alias sbl='subl3'
-else
-	alias sbl='subl'
+	alias subl='subl3'
 fi
 alias mutt='neomutt'
 alias view='vim -R'
 alias fuckswap='sudo swapoff -a && sudo swapon -a && echo "OK"'
-
