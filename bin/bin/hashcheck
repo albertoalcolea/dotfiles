@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Simply verify the hash of a file.
+# I forget this command all the time. Using it as a script helps me to use it from time to time.
+
+usage() {
+	echo "Usage: $(basename $0) hash_algorithm file hash"
+	echo "    hash_algorithm: it must be one of the built-in *sum commands (sha1sum, md5sum...)"
+	echo "    file: path to the file to verify"
+	echo "    hash: expected hash"
+}
+
+
+if [ $# -ne 3 ]; then
+	usage
+	exit 1
+fi
+
+cmd="$1sum"
+file="$2"
+hash="$3"
+
+if [ ! $(command -v "$cmd") ]; then
+	echo "Invalid algorithm. It must be one of the built-in *sum commands"
+	exit 1
+fi
+
+echo "$hash" "$file" | "$cmd" -c -
+exit $?
