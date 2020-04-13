@@ -2,4 +2,7 @@
 source ~/.mutt/mutt.rc
 source ~/.mutt/colors.rc
 source ~/.mutt/macros.rc
-source ~/.mutt/ml_skel.rc  # Modify with your personal mailbox settings file
+
+# source mailbox settings file if exists
+# https://gitlab.com/muttmua/mutt/-/wikis/ConfigTricks
+source `FILE=$HOME/.mutt/ml.rc; if [ ! -s "$FILE" ]; then FILE=/dev/null; fi; echo "$FILE"`
