@@ -14,6 +14,7 @@ source $HOME/.bash/path.sh
 source $HOME/.bash/history.sh
 source $HOME/.bash/completion.sh
 source $HOME/.bash/alias.sh
+source $HOME/.bash/fzf.sh
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -30,5 +31,3 @@ shopt -s checkwinsize
 export VISUAL=/usr/bin/vim
 export EDITOR="$VISUAL"
 
-# Load fzf
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
