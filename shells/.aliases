@@ -28,11 +28,11 @@ alias urlencode='python -c "import sys, urllib.parse as ul; print(ul.quote_plus(
 # Copy from and paste to clipboard
 if [ -x "$(command -v wl-copy)" ]; then
 	# Wayland
-	alias cbc='wl-copy'
+	alias cby='wl-copy'
 	alias cbp='wl-paste'
 elif [ -x "$(command -v xclip)" ]; then
 	# Xorg
-	alias cbc='xclip -i -selection clipboard'
+	alias cby='xclip -i -selection clipboard'
 	alias cbp='xclip -o -selection clipboard'
 fi
 

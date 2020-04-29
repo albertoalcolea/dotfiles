@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -eu
+
+# Get data either form stdin or from file
+content=$(cat "$@")
+
+# Copy to clipboard
+if [ -x "$(command -v wl-copy)" ]; then
+	# Wayland
+	echo "$content" | wl-copy
+else
+	echo "$content" | xclip -i -selection clipboard
+fi
