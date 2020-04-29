@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -eu
+
+# Paste from clipboard
+if [ -x "$(command -v wl-copy)" ]; then
+	# Wayland
+	wl-paste
+else
+	# Xorg
+	xclip -o -selection clipboard
+fi
+

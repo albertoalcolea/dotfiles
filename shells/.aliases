@@ -25,17 +25,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
 
-# Copy from and paste to clipboard
-if [ -x "$(command -v wl-copy)" ]; then
-	# Wayland
-	alias cby='wl-copy'
-	alias cbp='wl-paste'
-elif [ -x "$(command -v xclip)" ]; then
-	# Xorg
-	alias cby='xclip -i -selection clipboard'
-	alias cbp='xclip -o -selection clipboard'
-fi
-
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
 
