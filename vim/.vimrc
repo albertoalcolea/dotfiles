@@ -55,7 +55,7 @@ set number              " Show line number
 set cursorline          " Highligh current line
 set showmatch           " Show matching parenthesis
 set nofoldenable        " Disable folding
-set colorcolumn=120		" Ruler at 120 characters
+set colorcolumn=120     " Ruler at 120 characters
 
 " Clipboard
 set clipboard=unnamed
