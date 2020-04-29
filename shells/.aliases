@@ -32,8 +32,8 @@ if [ -x "$(command -v wl-copy)" ]; then
 	alias cbp='wl-paste'
 elif [ -x "$(command -v xclip)" ]; then
 	# Xorg
-	alias cbc='xclip -i'
-	alias cbp='xclip -o'
+	alias cbc='xclip -i -selection clipboard'
+	alias cbp='xclip -o -selection clipboard'
 fi
 
 # Reload the shell (i.e. invoke as a login shell)
