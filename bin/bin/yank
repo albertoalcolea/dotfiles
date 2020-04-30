@@ -8,9 +8,9 @@ content=$(cat "$@")
 # Copy to clipboard
 if [ -x "$(command -v wl-copy)" ]; then
 	# Wayland
-	echo "$content" | wl-copy --trim-newline --paste-once
+	echo -n "$content" | wl-copy --paste-once
 else
 	# Xorg
-	echo "$content" | xclip -i -selection clipboard
+	echo -n "$content" | xclip -i -selection clipboard
 fi
 
