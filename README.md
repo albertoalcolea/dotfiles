@@ -28,6 +28,7 @@ Run `vim` and execute `PlugInstall` to install all vim plugins.
 vim requirements:
 
 - `exuberant-ctags` or `universal-ctags` (for vim tagbar)
+- `editorconfig` (the core written in c that is hundred of times faster than the default core)
 - `vim-plug` (it is automatically installed with the `setup` script)
 
 bash requirements:

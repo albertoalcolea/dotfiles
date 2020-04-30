@@ -41,6 +41,10 @@ call plug#end()
 " NERDTree config
 let NERDTreeIgnore=['\.pyc$', '\.orig$']
 
+" EditorConfig default core is super slow compared with the core written in c
+let g:EditorConfig_exec_path='/usr/bin/editorconfig'
+let g:EditorConfig_core_mode='external_command'
+
 
 " === GENERAL ===
 
