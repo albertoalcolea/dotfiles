@@ -1,7 +1,6 @@
-# zfz takes about 40-50ms to load the completion.bash file
-# but I barely need something else than the history search and the
-# kill completion, so loading the key-bindings and the history completion
-# it saves most of the fzf load time
+# fzf takes about 40-50ms to load the completion.bash file but I barely need something else than the history
+# search and the kill completion, so loading just the key-bindings and the history completion saves most of the
+# load time of fzf
 
 export PATH=$PATH:~/.fzf/bin
 
