@@ -36,7 +36,7 @@ Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " NERDTree config
-let NERDTreeIgnore=['.git$', '\.pyc$', '\.orig$']
+let NERDTreeIgnore=['\.pyc$', '\.orig$']
 let NERDTreeShowHidden=1
 
 " EditorConfig default core is super slow compared with the core written in c
