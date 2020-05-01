@@ -3,7 +3,7 @@
 set -eu
 
 # Paste from clipboard
-if [ -x "$(command -v wl-copy)" ]; then
+if [ -x "$(command -v wl-paste)" ]; then
 	# Wayland
 	wl-paste
 else

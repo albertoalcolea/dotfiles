@@ -16,9 +16,6 @@ Plug 'tpope/vim-sensible'
 " Lean & mean status/tabline for vim that's light as air.
 Plug 'vim-airline/vim-airline'
 
-" Syntastic is a syntax checking plugin that runs files through external syntax checkers
-Plug 'vim-syntastic/syntastic'
-
 " Multicursor for vim
 Plug 'terryma/vim-multiple-cursors'
 
