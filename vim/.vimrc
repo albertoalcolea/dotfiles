@@ -75,3 +75,4 @@ map <C-p> :FZF<CR>
 nmap <leader>t :TagbarToggle<CR>
 nmap <leader>T :Tags<CR>
 nmap <leader>b :call fzf#vim#tags(expand('<cword>'))<CR>
+nmap <leader>p :Buffer<CR>
