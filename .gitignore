@@ -1,4 +1,9 @@
 vim/.vim/plugged/
+
+tmux/.tmux/plugins/*
+!tmux/.tmux/plugins/tpm
+
 mutt/.mutt/ml.rc
+
 idea/.IdeaIC/*
 !idea/.IdeaIC/config/keymaps/Custom.xml

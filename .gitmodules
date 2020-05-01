@@ -19,3 +19,6 @@
 [submodule "modules/zsh-autosuggestions"]
 	path = modules/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "modules/tpm"]
+	path = modules/tpm
+	url = https://github.com/tmux-plugins/tpm.git

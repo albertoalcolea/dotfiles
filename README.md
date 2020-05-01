@@ -22,6 +22,7 @@ Execute the `setup` script:
 Note: if any of the files to install was already in your system the script will ask you if you want to overwrite them.
 
 Run `vim` and execute `PlugInstall` to install all vim plugins.
+Run `tmux` and press Ctrl+a+I (capital i, as in Install) to install all tmux plugins.
 
 ## Requirements
 
