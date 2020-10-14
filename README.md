@@ -39,10 +39,4 @@ bash requirements:
 - `notify-send`
 - `fzf`
 
-zsh requirements:
-
-- `zsh-completions`
-- `zsh-autosuggestions`
-- `fzf`
-
 Some scripts in bin folder require extra dependencies

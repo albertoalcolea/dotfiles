@@ -13,12 +13,6 @@
 [submodule "modules/vim-plug"]
 	path = modules/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
-[submodule "modules/zsh-completions"]
-	path = modules/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions.git
-[submodule "modules/zsh-autosuggestions"]
-	path = modules/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "modules/tpm"]
 	path = modules/tpm
 	url = https://github.com/tmux-plugins/tpm.git
