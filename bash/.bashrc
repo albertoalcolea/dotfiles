@@ -10,10 +10,10 @@ fi
 
 # Register external definitions
 source $HOME/.bash/prompt.sh
-source $HOME/.bash/path.sh
+source $HOME/.bash/paths.sh
 source $HOME/.bash/history.sh
 source $HOME/.bash/completion.sh
-source $HOME/.bash/alias.sh
+source $HOME/.bash/aliases.sh
 source $HOME/.bash/fzf.sh
 
 # check the window size after each command and, if necessary,
