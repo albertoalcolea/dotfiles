@@ -31,7 +31,7 @@ fi
 
 if [ -f $HOME/.bashrc ]; then
 	echo "Creating backup of original ~/.bashrc"
-	cp $HOME/.bashrc $HOME/.bashrc.bkp
+	mv $HOME/.bashrc $HOME/.bashrc.bkp
 fi
 
 for symlink in bash bin editorconfig git icons idea mercurial mutt sublime tmux vim; do
