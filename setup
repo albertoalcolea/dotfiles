@@ -21,6 +21,7 @@ is_installed git || required+=(git)
 is_installed notify-send || required+=(libnotify)
 is_installed ctags || required+=(ctags)
 is_installed editorconfig || required+=(editorconfig)
+is_installed fzf || required+=(fzf)
 is_installed xsel || is_installed xclip || is_installed wl-clipboard || required+=('xsel|xclip|wl-clipboard')
 is_bash_completion_installed || required+=(bash-completion)
 

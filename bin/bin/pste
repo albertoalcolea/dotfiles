@@ -6,8 +6,11 @@ set -eu
 if [ -x "$(command -v wl-paste)" ]; then
 	# Wayland
 	wl-paste
+elif [ -x "$(command -v xsel)" ]; then
+	# Xorg (xsel)
+	xsel --clipboard
 else
-	# Xorg
+	# Xorg (xclip)
 	xclip -o -selection clipboard
 fi
 

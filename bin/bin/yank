@@ -9,8 +9,11 @@ content=$(cat "$@")
 if [ -x "$(command -v wl-copy)" ]; then
 	# Wayland
 	echo -n "$content" | wl-copy --paste-once
+elif [ -x "$(command -v xsel)" ]; then
+	# Xorg (xsel)
+	echo -n "$content" | xsel --clipboard
 else
-	# Xorg
+	# Xorg (xclip)
 	echo -n "$content" | xclip -i -selection clipboard
 fi
 
