@@ -27,16 +27,20 @@ Run `tmux` and press Ctrl+a+I (capital i, as in Install) to install all tmux plu
 
 ## Requirements
 
+bash requirements:
+
+- `bash-completion`
+- `notify-send`
+- `fzf`
+
 vim requirements:
 
 - `exuberant-ctags` or `universal-ctags` (for vim tagbar)
 - `editorconfig` (core written in c that is hundred of times faster than the default vimcore)
 - `vim-plug` (it is automatically installed with the `setup` script)
 
-bash requirements:
+tmux requirements:
 
-- `bash-completion`
-- `notify-send`
-- `fzf`
+- `xsel` or `xclip` (for X) or `wl-clipboard` (for Wayland)
 
 Some scripts in bin folder require extra dependencies

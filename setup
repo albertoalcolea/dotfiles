@@ -21,11 +21,17 @@ is_installed git || required+=(git)
 is_installed notify-send || required+=(libnotify)
 is_installed ctags || required+=(ctags)
 is_installed editorconfig || required+=(editorconfig)
+is_installed xsel || is_installed xclip || is_installed wl-clipboard || required+=('xsel|xclip|wl-clipboard')
 is_bash_completion_installed || required+=(bash-completion)
 
 if [ -n "$required" ]; then
 	echo "Required dependencies: ${required[@]}"
 	exit 1
+fi
+
+if [ -f $HOME/.bashrc ]; then
+	echo "Creating backup of original ~/.bashrc"
+	cp $HOME/.bashrc $HOME/.bashrc.bkp
 fi
 
 for symlink in bash bin editorconfig git icons idea mercurial mutt sublime tmux vim; do
