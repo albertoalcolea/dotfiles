@@ -10,12 +10,13 @@
 	"font_size": 11,
 	"ignored_packages":
 	[
-		"Vintage"
+		"Markdown",
+		"Vintage",
 	],
 	"rulers":
 	[
 		120
 	],
 	"theme": "Default.sublime-theme",
-	"update_check": false
+	"update_check": false,
 }

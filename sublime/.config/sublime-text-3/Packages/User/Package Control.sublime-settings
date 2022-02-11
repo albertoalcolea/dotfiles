@@ -20,6 +20,6 @@
 		"SublimeLinter",
 		"SublimeLinter-annotations",
 		"SublimeLinter-csslint",
-		"SublimeLinter-jshint"
-	]
+		"SublimeLinter-jshint",
+	],
 }
