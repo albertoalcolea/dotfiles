@@ -1,0 +1,140 @@
+#! /bin/bash
+
+OPTS=("-a" "--stats" "-h" "--hard-links")
+FULL_BACKUP="false"
+VERBOSE="false"
+
+USAGE=$(cat <<-END
+Usage:
+  backup [options]
+
+Create full and incremental backups with rsync.
+
+Options:
+  --src {PATH} : Source path
+  --dst {PATH} : Destination path
+  -f | --filter {FILTER FILE} : Filter file to use. Use rsync format (+ include, - exclude, etc)
+  -o | --owner {USERNAME} : If defined it will be the owner of the today's backup directory
+  -b | --full-backup : Force a full backup instead of an incremental backup
+  -x | --one-file-system : Don't cross filesystem boundaries
+  -n | --dry-run : Perform a trial run without actually copying files
+  -v | --verbose : Verbose mode
+  -h | --help : Show this help
+END
+)
+
+# Args
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		--src)
+			SRC="$2"
+			shift
+			shift
+			;;
+		--dst)
+			DST="$2"
+			shift
+			shift
+			;;
+		-f|--filter)
+			FILTER_FILE="$2"
+			shift
+			shift
+			;;
+		-o|--owner)
+			OWNER="$2"
+			shift
+			shift
+			;;
+		-b|--full-backup)
+			FULL_BACKUP="true"
+			shift
+			;;
+		-x|--one-file-system)
+			OPTS+=("-x")  # Don't cross filesystem boundaries
+			shift
+			;;
+		-n|--dry-run)
+			OPTS+=("-n")  # Perform a trial run
+			shift
+			;;
+		-v|--verbose)
+			VERBOSE="true"
+			OPTS+=("-v")
+			shift
+			;;
+		-h|--help)
+			echo "$USAGE"
+			exit 0
+			;;
+		*) # Unknown option
+			echo "Unknown option: $1"
+			exit 1
+			;;
+	esac
+done
+
+# Dump active options
+if [ "$VERBOSE" == "true" ]; then
+	echo "Using:"
+	echo "  src: $SRC"
+	echo "  dst: $DST"
+	echo "  filter file: $FITER_FILE"
+	echo "  owner: $OWNER"
+	echo "  full backup: $FULL_BACKUP"
+	echo "  verbose: $VERBOSE"
+	echo "  opts: ${OPTS[@]}"
+fi
+
+# Validate mandatory args
+if [ -z "$SRC" ] || [ -z "$DST" ]; then
+	echo "src and dst directories are mandatory"
+	exit 1
+fi
+
+# Filter
+if [ -f "$FILTER_FILE" ]; then
+	OPTS+=(--filter="merge $FILTER_FILE")
+fi
+
+# Remove trailing slashes
+SRC=$(echo "$SRC" | sed -e 's|\(.*\)/$|\1|')
+DST=$(echo "$DST" | sed -e 's|\(.*\)/$|\1|')
+
+# Get last and current backup names
+LAST="$(find $DST -maxdepth 1 -type d -regextype posix-egrep -regex '.*/[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort --unique --reverse | head -n 1)"
+if [ ! -z "$LAST" ]; then
+	LAST="$(basename $LAST)"
+fi
+NOW=$(date +%Y-%m-%d)
+
+echo "Today's backup is: $NOW"
+
+if [ "$LAST" = "$NOW" ]; then
+	echo "ERROR: you already did a backup today"
+	exit 0
+fi
+
+# Creating full or incremental backup
+if [ "$FULL_BACKUP" == "true" ]; then
+	echo "Creating full backup..."
+else
+	if [ -z "$LAST" ]; then
+		echo "No previous backup found. Creating initial backup..."
+	else
+		echo "Last backup was: $LAST"
+		OPTS+=("--link-dest=../$LAST/")
+	fi
+fi
+
+# Do the backup
+echo Exucuting: rsync "${OPTS[@]}" "$SRC/" "$DST/$NOW/"
+rsync "${OPTS[@]}" "$SRC/" "$DST/$NOW/"
+
+# Change permissions
+if [ -d "$DST/$NOW/" ] && [ ! -z "$OWNER" ]; then
+	chown "$OWNER":"$OWNER" "$DST/$NOW/"
+fi
+
+echo "Today's backup done"
+echo
