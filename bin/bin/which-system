@@ -1,0 +1,40 @@
+#!/usr/bin/python3
+
+import re
+import sys
+import subprocess
+
+# usage: python3 which-system 10.10.10.24
+
+TTL_REGEX = re.compile(r'\d{1,3}')
+
+def get_ttl(ip_address):
+	cmd = '/usr/bin/ping -c 1 {}'.format(ip_address)
+	proc = subprocess.Popen([cmd], stdout=subprocess.PIPE, shell=True)
+	(out, err) = proc.communicate()
+
+	out = out.split()
+	out = out[12].decode('UTF-8')
+
+	ttl_value = TTL_REGEX.findall(out)[0]
+
+	return int(ttl_value)
+
+def get_os(ttl):
+	if ttl >= 0 and ttl <= 64:
+		return 'Linux'
+	elif ttl >= 65 and ttl <= 128:
+		return 'Windows'
+	else:
+		return 'Not Found'
+
+if __name__ == '__main__':
+	if len(sys.argv) != 2:
+		print('[!] Usage: python3', sys.argv[0], '<ip-address>\n')
+		sys.exit(1)
+
+	ip_address = sys.argv[1]
+	ttl = get_ttl(ip_address)
+
+	os_name = get_os(ttl)
+	print('{} (ttl -> {}): {}\n'.format(ip_address, ttl, os_name))

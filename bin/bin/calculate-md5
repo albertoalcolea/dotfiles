@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+import os
+
+paths = []
+
+for path in os.listdir():
+	if os.path.isdir(path):
+		paths.append(path)
+
+total = 0
+for path in paths:
+	md5path = path + '.md5'
+	if os.listdir(path):
+		# Avoid empty dirs. They generate invalid hash files
+		os.system('find "{}" -type f -print0 | xargs -0 md5sum --tag > "{}"'.format(path, md5path))
+		total += 1
+		percent = total / len(paths)
+		print(path, 'DONE -', '{:.2%}'.format(percent))

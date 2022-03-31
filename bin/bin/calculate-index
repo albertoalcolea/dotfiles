@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+import os
+
+paths = []
+
+for path in os.listdir():
+	if os.path.isdir(path):
+		paths.append(path)
+
+total = 0
+for path in paths:
+	indexpath = path + '.index'
+	if os.listdir(path):
+		# Avoid empty dirs. They generate invalid hash files
+		os.system('tree "{}" > "{}"'.format(path, indexpath))
+		total += 1
+		percent = total / len(paths)
+		print(path, 'DONE -', '{:.2%}'.format(percent))
