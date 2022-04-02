@@ -17,6 +17,7 @@ Options:
   -o | --owner {USERNAME} : If defined it will be the owner of the today's backup directory
   -b | --full-backup : Force a full backup instead of an incremental backup
   -x | --one-file-system : Don't cross filesystem boundaries
+  -e | --rsh {COMMAND} : Choose an alternative remote shell program
   -n | --dry-run : Perform a trial run without actually copying files
   -v | --verbose : Verbose mode
   -h | --help : Show this help
@@ -52,6 +53,12 @@ while [[ $# -gt 0 ]]; do
 			;;
 		-x|--one-file-system)
 			OPTS+=("-x")  # Don't cross filesystem boundaries
+			shift
+			;;
+		-e|--rsh)
+			OPTS+=("-e")
+			OPTS+=("$2")
+			shift
 			shift
 			;;
 		-n|--dry-run)
