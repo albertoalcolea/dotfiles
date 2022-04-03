@@ -1,6 +1,5 @@
 # Local bin
-# Machine-dependant executables on ~/local/bin take preference
-export PATH=$PATH:~/.local/bin:~/bin
+export PATH=$PATH:~/.local/bin
 
 # IntelliJ IDEA custom properties
 export IDEA_PROPERTIES=~/.IdeaIC/idea.properties
