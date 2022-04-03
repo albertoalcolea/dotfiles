@@ -32,6 +32,9 @@ Plug 'gosukiwi/vim-atom-dark'
 " Support for editorconfig global file
 Plug 'editorconfig/editorconfig-vim'
 
+" Distraction-free mode
+Plug 'junegunn/goyo.vim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -52,6 +55,7 @@ colorscheme atom-dark-256
 
 " Other settings
 "set nowrap              " Do not split lines
+set linebreak           " Do not split words
 set hlsearch            " Highlight searches
 set number              " Show line number
 set cursorline          " Highligh current line
