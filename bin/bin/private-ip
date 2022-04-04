@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Show the private IP of the first (default) route
+
+ip route get 1 | head -n 1 | cut -d ' ' -f7

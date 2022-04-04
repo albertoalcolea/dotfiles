@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Shows the owner process of a port
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $(basename $0) port"
+	exit 1
+fi
+
+lsof -n -i4TCP:$1 | grep LISTEN
