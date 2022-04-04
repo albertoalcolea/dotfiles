@@ -19,7 +19,7 @@ __git_info() {
 	# Fast exit if dir is not a git repo
 	git rev-parse 2> /dev/null || return
 
-	local status=$(git status --porcelain=v2 --branch)
+	local status=$(git status --porcelain=v2 --branch 2> /dev/null)
 	local head=$(echo "$status" | sed -n 's/^# branch.head \(.*\)$/\1/p')
 
 	# Verify if HEAD points to branch or to single commit
