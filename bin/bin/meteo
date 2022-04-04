@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Shows the weather of a city
+
+if [ $# -ne 1 ]; then
+	echo "Usage: $(basename $0) city"
+	exit 1
+fi
+
+curl -4 http://wttr.in/$1
