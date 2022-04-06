@@ -10,7 +10,7 @@ user=$1
 shift
 
 uid=$(id -u $user)
-display=":1"
+display=$(who | grep "$user" | sed -n 's/.*(\(:[0-9]\(\.[0-9]\)*\))/\1/p')
 dbus=unix:path=/run/user/$uid/bus
 
 sudo -u $user DISPLAY=${display} \
