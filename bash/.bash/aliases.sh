@@ -35,9 +35,6 @@ alias fcd='cd "$(ls -d -- */ | fzf)" || echo "Invalid directory"'
 alias reload="exec ${SHELL} -l"
 
 # Utilities
-if [ -x "$(command -v subl3)" ]; then
-	alias subl='subl3'
-fi
 alias mutt='neomutt'
 alias view='vim -R'
 alias fuckswap='sudo swapoff -a && sudo swapon -a && echo "OK"'
