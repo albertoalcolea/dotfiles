@@ -25,7 +25,7 @@ Run `vim` and execute `PlugInstall` to install all vim plugins.
 
 Run `tmux` and press Ctrl+a+I (capital i, as in Install) to install all tmux plugins.
 
-Launch `Sublime Text` at least once before running the setup script so that it creates base directory structure. Once the setup script finishes open `Sublime Text` again and execute `Install Package Control` to install all sublime plugins.
+Run `Sublime Text` and execute `Install Package Controll` to install the package manager that will automatically start installing all sublime plugins.
 
 ## Requirements
 

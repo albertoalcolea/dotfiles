@@ -12,6 +12,22 @@ print_ok() {
 	echo -e "\033[01;32m$1\033[00m"
 }
 
+pre_install() {
+	# Some files need to be placed inside the directory trees created by some applications
+	#   eg: ~/.config/xyz/user/config/{CONFIG}
+	#
+	# stow creates symlinks to the files in this repo if the directory tree already exists:
+	#   ~/.config/xyz/user/config/local.cfg -> dotfiles/xyz/.config/xyz/user/config/local.cfg
+	# and creates a symlink to the parent directory otherwise:
+	#   ~/.config/xyz -> dotfiles/xyz/.config/xyz
+	#
+	# I don't want to put all application-dependant files in this repo, only the configuration files, so to make
+	# sure stow creates the symlinks correctly, even if the application is not installed or has never been run yet,
+	# I precreate those directory trees here.
+
+	mkdir -p .config/sublime-text/Packages/User
+}
+
 required=()
 
 is_installed stow || required+=(stow)
@@ -34,6 +50,8 @@ if [ -f $HOME/.bashrc ]; then
 	echo "Creating backup of original ~/.bashrc"
 	mv $HOME/.bashrc $HOME/.bashrc.bkp
 fi
+
+pre_install
 
 for symlink in bash bin editorconfig git icons idea mercurial mutt sublime tmux vim; do
 	stow -v -t $HOME $symlink
