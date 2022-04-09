@@ -28,6 +28,9 @@ alias venv='source venv/bin/activate'
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
 
+# Fuzzy cd
+alias fcd='cd "$(ls -d -- */ | fzf)" || echo "Invalid directory"'
+
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
 
