@@ -23,8 +23,6 @@ Note: if any of the files to install was already in your system the script will 
 
 Run `vim` and execute `PlugInstall` to install all vim plugins.
 
-Run `tmux` and press Ctrl+a+I (capital i, as in Install) to install all tmux plugins.
-
 Run `Sublime Text` and execute `Install Package Controll` to install the package manager that will automatically start installing all sublime plugins.
 
 ## Requirements
