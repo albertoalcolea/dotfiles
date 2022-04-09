@@ -19,3 +19,6 @@
 [submodule "modules/fzf"]
 	path = modules/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "modules/.tmux"]
+	path = modules/.tmux
+	url = https://github.com/gpakosz/.tmux
