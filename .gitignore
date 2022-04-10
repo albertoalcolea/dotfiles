@@ -1,9 +1,6 @@
 vim/.vim/plugged/
 vim/.vim/.netrwhist
 
-tmux/.tmux/plugins/*
-!tmux/.tmux/plugins/tpm
-
 mutt/.mutt/ml.rc
 
 idea/.IdeaIC/*
