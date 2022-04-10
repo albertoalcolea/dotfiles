@@ -7,7 +7,7 @@
 	path = ~/.gitconfig.local
 
 [core]
-	excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore.global
 
 [color]
 	status = auto
