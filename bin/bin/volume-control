@@ -1,0 +1,143 @@
+#!/bin/bash
+
+set -e
+
+DEFAULT_STEP=2 # % to increment/decrement
+DEFAULT_MAX=200
+
+# Regex to validate volume levels
+# 0-100% is the safe range but this script makes it possible to push the output more up to 200%
+# Theoretically it would possible to go even highter and pactl allows it, but 200% is already a dangerous limit.
+VOL_RE='^(0|[1-9][0-9]{0,2}|200)$'
+
+
+USAGE=$(cat <<-END
+Usage: volume-control [up|down|mute|unmute|mutemic|unmutemic|min|max|loud|{vol%}]
+
+Options:
+  - up and down: increase or decrease the output volume level in relative steps of 2%.
+  - mute: mute the output device.
+  - unmute: unmute the output device.
+  - mutemic: mute the input device.
+  - unmutemic: unmute the input device.
+  - min: set the output volume to 0%.
+  - max: set the output volume to 100%.
+  - loud: set the output volume to 200%. Be careful!! It may damage your hearing or your speakers.
+  - {vol%}: set the output volume to the given volume level. It must be an integer number between 0 to 200 without the percent sign.
+
+Environment variables:
+  - VOLUME_CONTROL_STEP: configure the level in % of each step.
+  - VOLUME_CONTROL_MAX: configure the maximum volume level allowed.
+END
+)
+
+
+# Check if the volume is an integer number within the valid range
+function check_valid_volume() {
+	local level="$1"
+	local msg="$2"
+
+	if ! [[ "$level" =~ $VOL_RE ]]; then
+		echo "Invalid $msg. It must be an integer number in the range [0,200]"
+		exit 1
+	fi
+}
+
+# Check if the given level exceeds the maximum allowed volume
+function check_exceeds_max_volume() {
+	local device="$1"
+	local level="$2"
+	local max="$3"
+
+	# Convert relative levels (+2%, -5%, ...) to absolute
+	local rel_op="${level:0:1}"
+	if [[ "$rel_op" == "+" || "$rel_op" == "-" ]]; then
+		local cur_level="$(get_volume $device)"
+		local rel_level="${level:1}"
+		level=$(expr $cur_level $rel_op $rel_level)
+	fi
+
+	if (( level > max )); then
+		echo "The volume level can not be highter than the maximum volume level allowed: $max%"
+		exit 1
+	fi
+}
+
+# Return the maximum volume percentage between the level of the left and right channels
+function get_volume() {
+	local device="$1"
+
+	local sink_volume="$(pactl get-sink-volume $device | head -n 1)"
+	local left="$(echo $sink_volume | cut -d ' ' -f5 | sed 's/.$//')"
+	local right="$(echo $sink_volume | cut -d ' ' -f14 | sed 's/.$//')"
+
+	echo $(( left > right ? left : right ))
+}
+
+# Set the volume to the given percentage (absolute or relative)
+function set_volume() {
+	local device="$1"
+	local level="$2"
+
+	pactl set-sink-volume "$device" "$level%"
+}
+
+
+output_dev="$(pactl get-default-sink)"
+input_dev="$(pactl get-default-source)"
+step="${VOLUME_CONTROL_STEP:-$DEFAULT_STEP}"
+max_level="${VOLUME_CONTROL_MAX:-$DEFAULT_MAX}"
+
+check_valid_volume "$step" "env. var. step level"
+check_valid_volume "$max_level" "env. var. max level"
+
+if [ $# -ne 1 ]; then
+	echo "$USAGE"
+	exit 1
+fi
+
+case "$1" in
+	"up")
+		volume="+$step"
+		check_exceeds_max_volume "$output_dev" "$volume" "$max_level"
+		set_volume "$output_dev" "$volume"
+		;;
+	"down")
+		volume="-$step"
+		set_volume "$output_dev" "$volume"
+		;;
+	"mute")
+		pactl set-sink-mute "$output_dev" yes
+		;;
+	"unmute")
+		pactl set-sink-mute "$output_dev" no
+		;;
+	"mutemic")
+		pactl set-source-mute "$input_dev" yes
+		;;
+	"unmutemic")
+		pactl set-source-mute "$input_dev" no
+		;;
+	"min")
+		volume=0
+		set_volume "$output_dev" "$volume"
+		;;
+	"max")
+		(( 100 <= max_level )) && volume=100 || volume="$max_level"
+		set_volume "$output_dev" "$volume"
+		;;
+	"loud")
+		(( 200 <= max_level )) && volume=200 || volume="$max_level"
+		set_volume "$output_dev" "$volume"
+		;;
+	"-h")
+		echo "$USAGE"
+		exit 0
+		;;
+	*)
+		volume="$1"
+		check_valid_volume "$volume" "volume level"
+		check_exceeds_max_volume "$device" "$volume" "$max_level"
+		set_volume "$output_dev" "$volume"
+		;;
+esac

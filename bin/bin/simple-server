@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# I always forget how to launch it because it is different than in python 2.
+# This script/shorcut helps me avoid searching how to do it every time.
+
+if [ $# -eq 1 ]; then
+	port="$1"
+else
+	port=8000
+fi
+
+python3 -m http.server "$port"
