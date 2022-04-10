@@ -1,6 +1,6 @@
 [user]
 	# Do not store here sensitive information such as the user or the email.
-	# Add them in `~/.gitconfig.local`
+	# Add it in `~/.gitconfig.local`
 	useConfigOnly = true
 
 [include]

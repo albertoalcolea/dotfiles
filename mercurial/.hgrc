@@ -1,6 +1,6 @@
 [ui]
 # Do not store here sensitive information such as the user or the email.
-# Add them in `~/.hgrc.local`
+# Add it in `~/.hgrc.local`
 verbose = True
 merge = meld
 
