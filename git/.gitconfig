@@ -1,6 +1,10 @@
 [user]
-	name = Alberto Alcolea
-	email = albertoalcolea@gmail.com
+	# Do not store here sensitive information such as the user or the email.
+	# Add them in `~/.gitconfig.local`
+	useConfigOnly = true
+
+[include]
+	path = ~/.gitconfig.local
 
 [core]
 	excludesfile = ~/.gitignore_global
@@ -28,7 +32,7 @@
 	dt = difftool --dir-diff
 	s = status -sb
 	b = !git branch | grep '*'
-	undo = reset --soft HEAD~1
-	glog = log --graph --oneline
-	last = log -1 --stat
 	l = log
+	lg = log --graph --oneline
+	last = log -1 --stat
+	undo = reset --soft HEAD~1

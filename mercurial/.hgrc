@@ -1,14 +1,17 @@
 [ui]
-username = Alberto Alcolea <albertoalcolea@gmail.com>
+# Do not store here sensitive information such as the user or the email.
+# Add them in `~/.hgrc.local`
 verbose = True
 merge = meld
 
 [extensions]
-hgext.extdiff = 
-shelve = 
+hgext.extdiff =
+shelve =
 
 [extdiff]
 cmd.meld =
 
 [merge-tools]
 meld.args = $local $other
+
+%include ~/.hgrc.local
