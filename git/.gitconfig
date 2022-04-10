@@ -20,6 +20,9 @@
 [fetch]
 	prune = true
 
+[log]
+	abbrevCommit = true
+
 [alias]
 	co = checkout
 	dt = difftool --dir-diff
@@ -27,3 +30,4 @@
 	b = !git branch | grep '*'
 	undo = reset --soft HEAD~1
 	glog = log --graph --oneline
+	last = log -1 --stat
