@@ -1,18 +1,20 @@
 #!/bin/bash
 
+set -eu
+
 if [ $# -lt 2 ]; then
 	echo "Usage: $(basename $0) user notify-send-params"
 	echo "  Eg: $(basename $0) alberto \"Backup status\" \"Today's backup done\""
 	exit 1
 fi
 
-user=$1
+user="$1"
 shift
 
-uid=$(id -u $user)
+uid=$(id -u "$user")
 display=$(who | grep "$user" | sed -n 's/.*(\(:[0-9]\(\.[0-9]\)*\))/\1/p')
 dbus=unix:path=/run/user/$uid/bus
 
-sudo -u $user DISPLAY=${display} \
+sudo -u "$user" DISPLAY=${display} \
 	      DBUS_SESSION_BUS_ADDRESS=$dbus \
 	      /usr/bin/notify-send "$@"
