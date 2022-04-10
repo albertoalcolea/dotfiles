@@ -31,3 +31,4 @@
 	undo = reset --soft HEAD~1
 	glog = log --graph --oneline
 	last = log -1 --stat
+	l = log
