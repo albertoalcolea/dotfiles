@@ -30,6 +30,12 @@ pre_install() {
 	mkdir -p .config/JetBrains/IntelliJIdea/options/linux
 }
 
+post_install() {
+	# Execute some actions after creating symlinks.
+	echo "Installing fzf"
+	$HOME/.fzf/intall --bin
+}
+
 required=()
 
 is_installed stow || required+=(stow)
@@ -58,6 +64,8 @@ pre_install
 for symlink in bash bin editorconfig git icons idea mercurial mutt sublime tmux vim; do
 	stow -v -t $HOME $symlink
 done
+
+post_install
 
 echo
 print_ok "Dotfiles installed correctly"
