@@ -12,6 +12,12 @@ print_ok() {
 	echo -e "\033[01;32m$1\033[00m"
 }
 
+backup() {
+	local file="$1"
+	echo "Creating backup of original $file"
+	mv "$file" "$file.bkp"
+}
+
 pre_install() {
 	# Some files need to be placed inside the directory trees created by some applications
 	#   eg: ~/.config/xyz/user/config/{CONFIG}
@@ -28,6 +34,11 @@ pre_install() {
 	mkdir -p ~/.config/sublime-text/Packages/User
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/keymaps
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/options/linux
+
+	# Backup distro defaults
+	[ -f ~/.bashrc ] && backup ~/.bashrc
+	[ -f ~/.bash_profile ] && backup ~/.bash_profile
+	[ -f ~/.profile ] && backup ~/.profile
 }
 
 
@@ -47,11 +58,6 @@ is_bash_completion_installed || required+=(bash-completion)
 if [ -n "$required" ]; then
 	echo "Required dependencies: ${required[@]}"
 	exit 1
-fi
-
-if [ -f $HOME/.bashrc ]; then
-	echo "Creating backup of original ~/.bashrc"
-	mv $HOME/.bashrc $HOME/.bashrc.bkp
 fi
 
 pre_install
