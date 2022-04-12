@@ -13,9 +13,6 @@
 [submodule "modules/vim-plug"]
 	path = modules/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
-[submodule "modules/tpm"]
-	path = modules/tpm
-	url = https://github.com/tmux-plugins/tpm.git
 [submodule "modules/fzf"]
 	path = modules/fzf
 	url = https://github.com/junegunn/fzf.git
