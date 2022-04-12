@@ -26,6 +26,8 @@ pre_install() {
 	# I precreate those directory trees here.
 
 	mkdir -p .config/sublime-text/Packages/User
+	mkdir -p .config/JetBrains/IntelliJIdea/keymaps
+	mkdir -p .config/JetBrains/IntelliJIdea/options/linux
 }
 
 required=()
