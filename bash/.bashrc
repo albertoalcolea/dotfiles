@@ -16,6 +16,10 @@ source $HOME/.bash/completion.sh
 source $HOME/.bash/aliases.sh
 source $HOME/.bash/fzf.sh
 
+# Register private/machine-dependent definitions
+[[ -f $HOME/.bash/private-paths.sh ]] && source $HOME/.bash/private-paths.sh
+[[ -f $HOME/.bash/private-aliases.sh ]] && source $HOME/.bash/private-aliases.sh
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize

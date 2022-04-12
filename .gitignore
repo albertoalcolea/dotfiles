@@ -1,7 +1,6 @@
+bash/.bash/private-*
+
 vim/.vim/plugged/
 vim/.vim/.netrwhist
 
 mutt/.mutt/ml.rc
-
-idea/.IdeaIC/*
-!idea/.IdeaIC/config/keymaps/Custom.xml
