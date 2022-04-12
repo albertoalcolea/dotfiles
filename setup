@@ -25,9 +25,9 @@ pre_install() {
 	# sure stow creates the symlinks correctly, even if the application is not installed or has never been run yet,
 	# I precreate those directory trees here.
 
-	mkdir -p .config/sublime-text/Packages/User
-	mkdir -p .config/JetBrains/IntelliJIdea/keymaps
-	mkdir -p .config/JetBrains/IntelliJIdea/options/linux
+	mkdir -p ~/.config/sublime-text/Packages/User
+	mkdir -p ~/.config/JetBrains/IntelliJIdea/keymaps
+	mkdir -p ~/.config/JetBrains/IntelliJIdea/options/linux
 }
 
 

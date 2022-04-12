@@ -25,6 +25,8 @@ Run `vim` and execute `PlugInstall` to install all vim plugins.
 
 Run `Sublime Text` and execute `Install Package Controll` to install the package manager that will automatically start installing all sublime plugins.
 
+Re-login before executing `IntelliJ IDEA` for the first time to properly load the environment variables from a fresh login shell.
+
 ## Requirements
 
 bash requirements:
