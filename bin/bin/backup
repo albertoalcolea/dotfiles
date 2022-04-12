@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -eo pipefail
+
 OPTS=("-a" "--stats" "-h" "--hard-links")
 FULL_BACKUP="false"
 VERBOSE="false"
