@@ -32,7 +32,7 @@ pre_install() {
 	# I don't want to put all application-dependant files in this repo, only the configuration files, so to make
 	# sure stow creates the symlinks correctly, even if the application is not installed or has never been run yet,
 	# I precreate those directory trees here.
-
+	mkdir -p ~/.local/share/icons
 	mkdir -p ~/.config/sublime-text/Packages/User
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/keymaps
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/options/linux
@@ -68,5 +68,7 @@ for symlink in bash bin editorconfig git icons idea mercurial mutt sublime tmux 
 	stow -v -t $HOME $symlink
 done
 
+echo
+echo "Re-login to properly load the changes from a fresh login shell"
 echo
 print_ok "Dotfiles installed correctly"
