@@ -2,30 +2,10 @@
 # Machine-dependant executables on ~/.local/bin take preference
 export PATH=$PATH:~/.local/bin:~/bin
 
-# JAVA_HOME
-#export JAVA_HOME=/opt/jdk
-#export PATH=$PATH:$JAVA_HOME/bin
+# Python jupyter
+export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 
-# MAVEN_HOME
-#export MAVEN_HOME=/opt/apache-maven
-#export PATH=$PATH:$MAVEN_HOME/bin
-
-# GRADLE_HOME
-#export GRADLE_HOME=/opt/gradle
-#export PATH=$PATH:$GRADLE_HOME/bin
-
-# GROOVY_HOME
-#export GROOVY_HOME=/opt/groovy
-#export PATH=$PATH:$GROOVY_HOME/bin
-
-# Python virtualenvwrapper
-#if [ -f /usr/bin/virtualenvwrapper.sh ]; then
-#	export WORKON_HOME=$HOME/.virtualenvs
-#	export PROJECT_HOME=$HOME/projects
-#	source /usr/bin/virtualenvwrapper.sh
-#fi
-
-# Ruby gems
-#if which ruby > /dev/null && which gem > /dev/null; then
-#	export PATH=$PATH:"$(ruby -e 'print Gem.user_dir')/bin"
-#fi
+# Ruby bundler
+export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
+export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
+export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle

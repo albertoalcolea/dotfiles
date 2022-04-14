@@ -3,4 +3,11 @@
 # exists.
 
 # Environment varialbes used by some applications that do not load a bash shell
-export IDEA_PROPERTIES=~/.config/JetBrains/idea.properties
+
+# XDG User directories
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+# IntelliJ IDEA
+export IDEA_PROPERTIES=$XDG_CONFIG_HOME/JetBrains/idea.properties

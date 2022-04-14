@@ -2,8 +2,6 @@
 # search and the kill completion, so loading just the key-bindings and the history completion saves most of the
 # load time of fzf
 
-export PATH=$PATH:~/.fzf/bin
-
 # Kill completion
 
 # To redraw line after fzf closes (printf '\e[5n')
@@ -38,4 +36,4 @@ _fzf_complete_kill() {
 complete -F _fzf_complete_kill -o default -o bashdefault kill
 
 # Key bindings
-source ~/.fzf/shell/key-bindings.bash
+source $HOME/.bash/fzf/key-bindings.bash

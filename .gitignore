@@ -1,5 +1,8 @@
 bash/.bash/private-*
 
+git/.config/git/config.local
+mercurial/.config/hg/hgrc.local
+
 vim/.vim/plugged/
 vim/.vim/.netrwhist
 

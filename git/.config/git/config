@@ -4,10 +4,7 @@
 	useConfigOnly = true
 
 [include]
-	path = ~/.gitconfig.local
-
-[core]
-	excludesfile = ~/.gitignore.global
+	path = ~/.config/git/config.local
 
 [color]
 	status = auto

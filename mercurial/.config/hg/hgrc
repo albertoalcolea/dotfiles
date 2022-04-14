@@ -14,4 +14,4 @@ cmd.meld =
 [merge-tools]
 meld.args = $local $other
 
-%include ~/.hgrc.local
+%include ~/.config/hg/hgrc.local
