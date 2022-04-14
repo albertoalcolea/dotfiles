@@ -21,6 +21,9 @@
 [fetch]
 	prune = true
 
+[pull]
+	rebase = false  # merge
+
 [log]
 	abbrevCommit = true
 
