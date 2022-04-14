@@ -69,6 +69,4 @@ for symlink in bash bin editorconfig git icons idea mercurial mutt sublime tmux 
 done
 
 echo
-echo "Re-login to properly load the changes from a fresh login shell"
-echo
 print_ok "Dotfiles installed correctly"
