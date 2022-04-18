@@ -45,6 +45,5 @@ alias tilix-backup="dconf dump /com/gexperts/Tilix/ > $DOTFILES_HOME/dconf/tilix
 alias tilix-restore="dconf load /com/gexperts/Tilix/ < $DOTFILES_HOME/dconf/tilix.dconf"
 
 # Utilities
-alias mutt='neomutt'
 alias view='vim -R'
 alias fuckswap='sudo swapoff -a && sudo swapon -a && echo "OK"'
