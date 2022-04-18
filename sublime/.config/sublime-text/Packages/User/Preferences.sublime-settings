@@ -9,6 +9,7 @@
 		"__pycache__"
 	],
 	"font_size": 11,
+	"line_padding_bottom": 1,
 	"ignored_packages":
 	[
 		"Vintage",
