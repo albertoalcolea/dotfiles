@@ -4,16 +4,34 @@ import os
 
 paths = []
 
-for path in os.listdir():
-	if os.path.isdir(path):
-		paths.append(path)
+def get_nautilus_selected_paths():
+	paths = []
+	cwd = os.getcwd() # current dir
+	for path in os.environ['NAUTILUS_SCRIPT_SELECTED_FILE_PATHS'].split('\n')[:-1]:
+		relpath = os.path.relpath(path, cwd)
+		if os.path.isdir(relpath) and os.listdir(relpath):
+			# Avoid empty dirs. They generate invalid hash files
+			paths.append(relpath)
+	return paths
+
+def get_current_dir_paths():
+	paths = []
+	for path in os.listdir():
+		if os.path.isdir(path) and os.listdir(path):
+			# Avoid empty dirs. They generate invalid hash files
+			paths.append(path)
+	return paths
+
+
+if os.environ['NAUTILUS_SCRIPT_SELECTED_FILE_PATHS']:
+	paths = get_nautilus_selected_paths()
+else:
+	paths = get_current_dir_paths()
 
 total = 0
 for path in paths:
 	indexpath = path + '.index'
-	if os.listdir(path):
-		# Avoid empty dirs. They generate invalid hash files
-		os.system('tree "{}" > "{}"'.format(path, indexpath))
-		total += 1
-		percent = total / len(paths)
-		print(path, 'DONE -', '{:.2%}'.format(percent))
+	os.system('tree "{}" > "{}"'.format(path, indexpath))
+	total += 1
+	percent = total / len(paths)
+	print(path, 'DONE -', '{:.2%}'.format(percent))

@@ -2,18 +2,38 @@
 
 import os
 
-paths = []
 
-for path in os.listdir():
-	if os.path.isdir(path):
-		paths.append(path)
+def get_nautilus_selected_paths():
+	paths = []
+	cwd = os.getcwd() # current dir
+	for path in os.environ['NAUTILUS_SCRIPT_SELECTED_FILE_PATHS'].split('\n')[:-1]:
+		relpath = os.path.relpath(path, cwd)
+		if os.path.isfile(relpath) or (os.path.isdir(relpath) and os.listdir(relpath)):
+			# Avoid empty dirs. They generate invalid hash files
+			paths.append(relpath)
+	return paths
+
+def get_current_dir_paths():
+	paths = []
+	for path in os.listdir():
+		if os.path.isdir(path) and os.listdir(path):
+			# Avoid empty dirs. They generate invalid hash files
+			paths.append(path)
+	return paths
+
+
+if os.environ['NAUTILUS_SCRIPT_SELECTED_FILE_PATHS']:
+	paths = get_nautilus_selected_paths()
+else:
+	paths = get_current_dir_paths()
 
 total = 0
 for path in paths:
 	md5path = path + '.md5'
-	if os.listdir(path):
-		# Avoid empty dirs. They generate invalid hash files
+	if os.path.isfile(path):
+		os.system('md5sum --tag "{}" > "{}"'.format(path, md5path))
+	else:
 		os.system('find "{}" -type f -print0 | xargs -0 md5sum --tag > "{}"'.format(path, md5path))
-		total += 1
-		percent = total / len(paths)
-		print(path, 'DONE -', '{:.2%}'.format(percent))
+	total += 1
+	percent = total / len(paths)
+	print(path, 'DONE -', '{:.2%}'.format(percent))
