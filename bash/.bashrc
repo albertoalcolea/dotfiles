@@ -4,7 +4,9 @@
 # If we are running Arch Linux we need to load this script
 # to be able to open new terminals in the current directory
 # https://wiki.archlinux.org/index.php/GNOME/Tips_and_tricks#Terminal
-if [ -f "/etc/arch-release" ]; then
+# Same for Tilix in Ubuntu (it may require a symlink)
+# https://github.com/gnunn1/tilix/wiki/VTE-Configuration-Issue
+if [[ -f "/etc/arch-release" || $TILIX_ID ]]; then
 	source /etc/profile.d/vte.sh
 fi
 
@@ -17,8 +19,8 @@ source $HOME/.bash/aliases.sh
 source $HOME/.bash/fzf.sh
 
 # Register private/machine-dependent definitions
-[[ -f $HOME/.bash/private-paths.sh ]] && source $HOME/.bash/private-paths.sh
-[[ -f $HOME/.bash/private-aliases.sh ]] && source $HOME/.bash/private-aliases.sh
+[[ -f $HOME/.bash/private_paths.sh ]] && source $HOME/.bash/private_paths.sh
+[[ -f $HOME/.bash/private_aliases.sh ]] && source $HOME/.bash/private_aliases.sh
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

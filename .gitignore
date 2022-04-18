@@ -1,4 +1,4 @@
-bash/.bash/private-*
+bash/.bash/private_*
 
 git/.config/git/config.local
 mercurial/.config/hg/hgrc.local
