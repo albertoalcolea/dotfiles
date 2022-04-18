@@ -1,0 +1,18 @@
+[/]
+quake-specific-monitor=0
+session-name='${directory}'
+terminal-title-style='none'
+
+[keybindings]
+session-add-down='<Primary><Shift>d'
+session-add-right='<Primary><Shift>r'
+session-name='<Primary>less'
+
+[profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+background-color='#1E1E1E1E1E1E'
+cell-height-scale=1.1000000000000001
+foreground-color='#FFFFFFFFFFFF'
+palette=['#000000', '#CC0000', '#4D9A05', '#C3A000', '#3464A3', '#754F7B', '#05979A', '#D3D6CF', '#545652', '#EF2828', '#89E234', '#FBE84F', '#729ECF', '#AC7EA8', '#34E2E2', '#EDEDEB']
+scrollback-lines=10000
+use-theme-colors=false
+visible-name='Alberto'

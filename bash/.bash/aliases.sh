@@ -35,7 +35,7 @@ alias urlencode='python -c "import sys, urllib.parse as ul; print(ul.quote_plus(
 alias fcd='cd "$(ls -d -- */ | fzf)" || echo "Invalid directory"'
 
 # Go to dotfiles repo
-alias cdot='cd "$HOME/$(dirname "$(readlink ~/.bashrc)")/.."'
+alias cdot="cd $DOTFILES_HOME"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
