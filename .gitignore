@@ -5,5 +5,3 @@ mercurial/.config/hg/hgrc.local
 
 vim/.vim/plugged/
 vim/.vim/.netrwhist
-
-mutt/.mutt/ml.rc

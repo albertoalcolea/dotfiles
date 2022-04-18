@@ -1,8 +1,0 @@
-# Register external definitions
-source ~/.mutt/mutt.rc
-source ~/.mutt/colors.rc
-source ~/.mutt/macros.rc
-
-# source mailbox settings file if exists
-# https://gitlab.com/muttmua/mutt/-/wikis/ConfigTricks
-source `FILE=$HOME/.mutt/ml.rc; if [ ! -s "$FILE" ]; then FILE=/dev/null; fi; echo "$FILE"`
