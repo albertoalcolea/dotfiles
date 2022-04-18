@@ -40,6 +40,10 @@ alias cdot='cd "$HOME/$(dirname "$(readlink ~/.bashrc)")/.."'
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec ${SHELL} -l"
 
+# Tilix backup
+alias tilix-backup="dconf dump /com/gexperts/Tilix/ > $DOTFILES_HOME/dconf/tilix.dconf"
+alias tilix-restore="dconf load /com/gexperts/Tilix/ < $DOTFILES_HOME/dconf/tilix.dconf"
+
 # Utilities
 alias mutt='neomutt'
 alias view='vim -R'

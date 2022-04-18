@@ -2,6 +2,9 @@
 # Machine-dependant executables on ~/.local/bin take preference
 export PATH=$PATH:~/.local/bin:~/bin
 
+# Dotfiles
+export DOTFILES_HOME="$(readlink -f "$(dirname "$(readlink -f ${BASH_SOURCE[0]})")/../../")"
+
 # Python jupyter
 export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 
