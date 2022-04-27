@@ -31,6 +31,9 @@ alias venv='source venv/bin/activate'
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'
 
+# Highlight grep. Like grep, but only highlight matches without filtering them
+alias hgrep='grep --color=always -e "^" -e'
+
 # Fuzzy cd
 alias fcd='cd "$(ls -d -- */ | fzf)" || echo "Invalid directory"'
 
