@@ -16,6 +16,7 @@ fi
 # Some more ls aliases
 alias ll='ls -l'
 alias la='ls -lA'
+alias lt='ls -lrt'
 alias l='ls -C'
 
 # Colored GCC warnings and errors
