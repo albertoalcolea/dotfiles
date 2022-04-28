@@ -20,6 +20,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
 
 " fzf fuzzy finder wrapper for vim
+Plug 'junegunn/fzf', { 'on': 'FZF' }
 Plug 'junegunn/fzf.vim'
 
 " Class outline viewer for Vim
