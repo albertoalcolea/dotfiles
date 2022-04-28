@@ -36,11 +36,6 @@ pre_install() {
 	mkdir -p ~/.config/sublime-text/Packages/User
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/keymaps
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/options/linux
-
-	# Backup distro defaults
-	[ -f ~/.bashrc ] && backup ~/.bashrc
-	[ -f ~/.bash_profile ] && backup ~/.bash_profile
-	[ -f ~/.profile ] && backup ~/.profile
 }
 
 
