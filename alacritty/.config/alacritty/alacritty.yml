@@ -857,7 +857,7 @@ key_bindings:
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
   #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
   - { key: F11,                                              action: ToggleFullScreen      }
-  - { key: N,              mods: Control|Shift,              action: CreateNewWindow       }
+  #- { key: N,              mods: Control|Shift,              action: CreateNewWindow       }
 
 #debug:
   # Display the time it takes to redraw each frame.
