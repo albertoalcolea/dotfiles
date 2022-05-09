@@ -14,12 +14,6 @@ print_ok() {
 	echo -e "\033[01;32m$1\033[00m"
 }
 
-backup() {
-	local file="$1"
-	echo "Creating backup of original $file"
-	mv "$file" "$file.bkp"
-}
-
 pre_install() {
 	# Some files need to be placed inside the directory trees created by some applications
 	#   eg: ~/.config/xyz/user/config/{CONFIG}
@@ -59,7 +53,7 @@ fi
 
 pre_install
 
-for symlink in alacritty bash bin editorconfig fonts git icons idea kitty mercurial nautilus sublime tmux vim; do
+for symlink in alacritty bash bin editorconfig fonts git icons idea mercurial nautilus sublime tmux vim; do
 	stow -v -t $HOME $symlink
 done
 
