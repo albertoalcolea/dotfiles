@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#
+# Install with:
+#
+# sudo nmcli con import type wireguard file /etc/wireguard/wg0.conf
+# sudo nmcli connection modify wg0 autoconnect no
+# sudo nmcli connection down wg0
+#
+# Then: vpn [start|stop|status]
+# 
+
+IFACE=wg0
+
+function print_usage() {
+	echo "Usage: $(basename "$0") [start|stop|status]"
+}
+
+function print_green() {
+	echo -e "\033[1;32m$1\033[0m"
+}
+
+function print_red() {
+	echo -e "\033[1;31m$1\033[0m"
+}
+
+
+if [ $# -ne 1 ]; then
+	echo "Invalid number of parameters"
+	print_usage
+	exit 1
+fi
+
+case "$1" in
+	start)
+		nmcli connection up "$IFACE"
+		;;
+	stop)
+		nmcli connection down "$IFACE"
+		;;
+	status)
+		if [[ $(nmcli -g GENERAL.STATE connection show "$IFACE") ]]; then
+        	        print_green "VPN activated"
+	        else
+        	        print_red "VPN disabled"
+	        fi
+		;;
+	*)
+		echo "Invalid parameter: $1"
+		print_usage
+		exit 1
+		;;
+esac
