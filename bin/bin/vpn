@@ -45,10 +45,10 @@ fi
 
 case "$1" in
 	start)
-		nmcli connection up "$IFACE"
+		nmcli connection up "$IFACE" && print_green "Connected"
 		;;
 	stop)
-		nmcli connection down "$IFACE"
+		nmcli connection down "$IFACE" && print_red "Disconnected"
 		;;
 	status)
 		if [[ $(nmcli -g GENERAL.STATE connection show "$IFACE") ]]; then
