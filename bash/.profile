@@ -9,5 +9,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
-# IntelliJ IDEA
+# JetBrains IDEs
 export IDEA_PROPERTIES=$XDG_CONFIG_HOME/JetBrains/idea.properties
+export PYCHARM_PROPERTIES=$XDG_CONFIG_HOME/JetBrains/pycharm.properties

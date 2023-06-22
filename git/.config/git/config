@@ -32,7 +32,7 @@
 	dt = difftool --dir-diff
 	s = status -sb
 	b = !git branch | grep '*'
-	l = log
+	l = log --oneline
 	lg = log --graph --oneline
 	last = log -1 --stat
 	undo = reset --soft HEAD~1
