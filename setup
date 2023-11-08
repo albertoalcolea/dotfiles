@@ -30,6 +30,8 @@ pre_install() {
 	mkdir -p ~/.config/sublime-text/Packages/User
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/keymaps
 	mkdir -p ~/.config/JetBrains/IntelliJIdea/options/linux
+	mkdir -p ~/.config/JetBrains/PyCharm/keymaps
+	mkdir -p ~/.config/JetBrains/PyCharm/options/linux
 }
 
 
