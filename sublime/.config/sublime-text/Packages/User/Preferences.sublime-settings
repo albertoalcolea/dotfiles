@@ -16,4 +16,5 @@
 	],
 	"rulers": [120],
 	"trim_trailing_white_space_on_save": "all",
+	"index_files": false,
 }
