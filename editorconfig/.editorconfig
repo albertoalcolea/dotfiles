@@ -17,6 +17,6 @@ indent_size = 2
 [*.{css,scss}]
 indent_size = 2
 
-[*.yml]
+[*.{yaml,yml}]
 indent_style = space
 indent_size = 2
