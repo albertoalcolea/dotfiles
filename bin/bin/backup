@@ -5,6 +5,7 @@ set -eo pipefail
 OPTS=("-a" "--stats" "-h" "--hard-links")
 FULL_BACKUP="false"
 IS_RSH="false"
+IS_DST_RSH="false"
 RSH_CMD=""
 VERBOSE="false"
 
@@ -114,8 +115,12 @@ fi
 SRC=$(echo "$SRC" | sed -e 's|\(.*\)/$|\1|')
 DST=$(echo "$DST" | sed -e 's|\(.*\)/$|\1|')
 
-# Split rsh credentials and path
-if [ "$IS_RSH" == "true" ]; then
+# Check if dst is a local or remote directory when rsh command is set
+if [ "$IS_RSH" == "true" ] && [[ "$DST" =~ ':' ]]; then
+	# Technically the character ':', which is also used to separate user from path, is a valid character in file,
+	# but for simplicity I don't support them in this particular use case
+	IS_DST_RSH="true"
+	# Split rsh credentials and path
 	RSH_CREDS="$(echo "$DST" | cut -d ':' -f 1)"
 	RSH_PATH="$(echo "$DST" | cut -d ':' -f 2-)"
 fi
@@ -125,7 +130,7 @@ fi
 # finished writting all of the content to stdout, I use `sed '1!d'` as sed consumes the stdin after all the content
 # has been written to it
 # Get last and current backup names
-if [ "$IS_RSH" == "true" ]; then
+if [ "$IS_DST_RSH" == "true" ]; then
 	# Remote backup
 	LAST="$($RSH_CMD "$RSH_CREDS" "find $RSH_PATH -maxdepth 1 -type d -regextype posix-egrep -regex '.*/[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort --unique --reverse | sed '1!d'")"
 else
@@ -162,7 +167,7 @@ rsync "${OPTS[@]}" "$SRC/" "$DST/$NOW/"
 
 # Change permissions
 if [ -n "$OWNER" ]; then
-	if [ "$IS_RSH" == "true" ]; then
+	if [ "$IS_DST_RSH" == "true" ]; then
 		# Remote backup
 		if $RSH_CMD "$RSH_CREDS" -q "[ -d \"$RSH_PATH/$NOW/\" ]"; then
 			$RSH_CMD "$RSH_CREDS" "chown \"$OWNER\":\"$OWNER\" \"$RSH_PATH/$NOW/\""
