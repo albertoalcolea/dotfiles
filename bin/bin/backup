@@ -4,6 +4,8 @@ set -eo pipefail
 
 OPTS=("-a" "--stats" "-h" "--hard-links")
 FULL_BACKUP="false"
+IS_RSH="false"
+RSH_CMD=""
 VERBOSE="false"
 
 USAGE=$(cat <<-END
@@ -58,6 +60,8 @@ while [[ $# -gt 0 ]]; do
 			shift
 			;;
 		-e|--rsh)
+			IS_RSH="true"
+			RSH_CMD="$2"
 			OPTS+=("-e")
 			OPTS+=("$2")
 			shift
@@ -88,7 +92,7 @@ if [ "$VERBOSE" == "true" ]; then
 	echo "Using:"
 	echo "  src: $SRC"
 	echo "  dst: $DST"
-	echo "  filter file: $FITER_FILE"
+	echo "  filter file: $FILTER_FILE"
 	echo "  owner: $OWNER"
 	echo "  full backup: $FULL_BACKUP"
 	echo "  verbose: $VERBOSE"
@@ -110,10 +114,26 @@ fi
 SRC=$(echo "$SRC" | sed -e 's|\(.*\)/$|\1|')
 DST=$(echo "$DST" | sed -e 's|\(.*\)/$|\1|')
 
+# Split rsh credentials and path
+if [ "$IS_RSH" == "true" ]; then
+	RSH_CREDS="$(echo "$DST" | cut -d ':' -f 1)"
+	RSH_PATH="$(echo "$DST" | cut -d ':' -f 2-)"
+fi
+
 # Get last and current backup names
-LAST="$(find $DST -maxdepth 1 -type d -regextype posix-egrep -regex '.*/[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort --unique --reverse | head -n 1)"
-if [ ! -z "$LAST" ]; then
-	LAST="$(basename $LAST)"
+# Note: in some rare cases, `... | head -1` causes the head command to close the stdin before the pevious command has
+# finished writting all of the content to stdout, I use `sed '1!d'` as sed consumes the stdin after all the content
+# has been written to it
+# Get last and current backup names
+if [ "$IS_RSH" == "true" ]; then
+	# Remote backup
+	LAST="$($RSH_CMD "$RSH_CREDS" "find $RSH_PATH -maxdepth 1 -type d -regextype posix-egrep -regex '.*/[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort --unique --reverse | sed '1!d'")"
+else
+	# Local backup
+	LAST="$(find "$DST" -maxdepth 1 -type d -regextype posix-egrep -regex '.*/[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort --unique --reverse | sed '1!d')"
+fi
+if [ -n "$LAST" ]; then
+	LAST="$(basename "$LAST")"
 fi
 NOW=$(date +%Y-%m-%d)
 
@@ -141,9 +161,20 @@ echo Exucuting: rsync "${OPTS[@]}" "$SRC/" "$DST/$NOW/"
 rsync "${OPTS[@]}" "$SRC/" "$DST/$NOW/"
 
 # Change permissions
-if [ -d "$DST/$NOW/" ] && [ ! -z "$OWNER" ]; then
-	chown "$OWNER":"$OWNER" "$DST/$NOW/"
+if [ -n "$OWNER" ]; then
+	if [ "$IS_RSH" == "true" ]; then
+		# Remote backup
+		if $RSH_CMD "$RSH_CREDS" -q "[ -d \"$RSH_PATH/$NOW/\" ]"; then
+			$RSH_CMD "$RSH_CREDS" "chown \"$OWNER\":\"$OWNER\" \"$RSH_PATH/$NOW/\""
+		fi
+	else
+		# Local backup
+		if [ -d "$DST/$NOW/" ]; then
+			chown "$OWNER":"$OWNER" "$DST/$NOW/"
+		fi
+	fi
 fi
 
 echo "Today's backup done"
 echo
+
