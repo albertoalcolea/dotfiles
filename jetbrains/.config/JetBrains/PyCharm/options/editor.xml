@@ -18,6 +18,14 @@
     </option>
     <option name="enabled" value="false" />
   </component>
+  <component name="EditorSettings">
+    <option name="languageBreadcrumbsMap">
+      <map>
+        <entry key="Python" value="true" />
+      </map>
+    </option>
+    <option name="SHOW_BREADCRUMBS" value="false" />
+  </component>
   <component name="InlayHintsSettings">
     <option name="lastViewedProviderKeyId" value="" />
   </component>
