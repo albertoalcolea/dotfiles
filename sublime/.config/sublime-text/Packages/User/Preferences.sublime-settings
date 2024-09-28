@@ -12,8 +12,6 @@
 	"line_padding_bottom": 1,
 	"ignored_packages":
 	[
-		"BracketHighlighter",
-		"SideBarEnhancements",
 		"Vintage",
 	],
 	"rulers": [120],
