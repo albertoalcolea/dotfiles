@@ -2,4 +2,9 @@
 
 # Show the public IP
 
-dig +short myip.opendns.com @resolver1.opendns.com
+ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+if [[ -n "${ip}" ]]; then
+	echo "${ip}"
+else
+	dig -t AAAA +short myip.opendns.com @resolver1.opendns.com
+fi
