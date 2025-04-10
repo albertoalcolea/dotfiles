@@ -12,6 +12,9 @@
 	diff = auto
 	interactive = auto
 
+[init]
+	defaultBranch = main
+
 [diff]
 	tool = meld
 
