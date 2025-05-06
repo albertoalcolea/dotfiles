@@ -26,7 +26,7 @@ alias l='ls -C'
 alias alert='notify-send -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history | tail -n 1 | sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Activate Python virtual environment
-alias venv='source venv/bin/activate'
+alias venv='source venv/bin/activate 2> /dev/null || source .venv/bin/activate 2> /dev/null'
 
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib.parse as ul; print(ul.quote_plus(sys.argv[1]))"'

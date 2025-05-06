@@ -22,5 +22,6 @@
 		"SublimeLinter-csslint",
 		"SublimeLinter-jshint",
 		"Terraform",
+		"TOML",
 	],
 }
