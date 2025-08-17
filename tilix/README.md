@@ -4,3 +4,9 @@ Configs for GNOME application that do not use dotfiles and relies on GSettings.
 ## Usage
 * Backup: `dconf dump /path/to/app/settings/ > app.dconf`
 * Restore: `dconf load /path/to/app/settings/ < app.dconf`
+
+Example for Tilix:
+
+```
+dconf load /com/gexperts/Tilix/ < tilix.dconf
+```
