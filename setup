@@ -55,7 +55,7 @@ fi
 
 pre_install
 
-for symlink in alacritty bash bin editorconfig fonts git icons jetbrains mercurial nautilus sublime tmux vim; do
+for symlink in alacritty bash bin editorconfig fonts git icons jetbrains mercurial nautilus sublime terminator tmux vim; do
 	stow -v -t $HOME $symlink
 done
 
