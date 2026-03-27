@@ -29,4 +29,7 @@
   <component name="InlayHintsSettings">
     <option name="lastViewedProviderKeyId" value="" />
   </component>
+  <component name="InlineCompletionOnboarding">
+    <option name="onboardingFinished" value="true" />
+  </component>
 </application>
