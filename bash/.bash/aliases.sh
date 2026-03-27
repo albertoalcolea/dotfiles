@@ -47,3 +47,7 @@ alias tilix-restore="dconf load /com/gexperts/Tilix/ < $DOTFILES_HOME/dconf/tili
 # Utilities
 alias view='vim -R'
 alias fuckswap='sudo swapoff -a && sudo swapon -a && echo "OK"'
+
+# Docker
+alias dk='docker'
+alias dkc='docker compose'
