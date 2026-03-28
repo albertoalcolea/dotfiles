@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -eo pipefail
+
+if [ $# -lt 1 ]; then
+	echo "Usage: $0 <file.mkv>"
+	exit 1
+fi
+
+if [ ! -f "$1"]; then
+	echo "Error: file not found $1"
+	exit 1
+fi
+
+INPUT="$1"
+BASENAME="${INPUT%.*}"
+OUTPUT="${BASENAME}_h264.mkv"
+
+ffmpeg -i "$INPUT" \
+  -map 0:v -map 0:a -map 0:s? \
+  -c:v libx264 -preset medium -crf 20 -profile:v high -level 4.1 -pix_fmt yuv420p \
+  -c:a copy \
+  -c:s srt \
+  "$OUTPUT"
+
+echo "Done!"
