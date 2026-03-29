@@ -2,25 +2,48 @@
 
 set -eo pipefail
 
-if [ $# -lt 1 ]; then
-	echo "Usage: $0 <file.mkv>"
+bold() {
+  echo -e "\033[1m$*\033[0m"
+}
+
+
+if [[ $# -lt 1 ]]; then
+	echo "Usage: $0 <input_file>"
 	exit 1
 fi
 
-if [ ! -f "$1"]; then
+if [[ ! -f "$1" ]]; then
 	echo "Error: file not found $1"
 	exit 1
 fi
 
 INPUT="$1"
 BASENAME="${INPUT%.*}"
-OUTPUT="${BASENAME}_h264.mkv"
 
-ffmpeg -i "$INPUT" \
-  -map 0:v -map 0:a -map 0:s? \
-  -c:v libx264 -preset medium -crf 20 -profile:v high -level 4.1 -pix_fmt yuv420p \
-  -c:a copy \
-  -c:s srt \
-  "$OUTPUT"
+bold "Input: ${INPUT}"
 
-echo "Done!"
+FORMAT=$(ffprobe -v error -show_entries format=format_name -of default=noprint_wrappers=1:nokey=1 "${INPUT}")
+bold "Detected format: ${FORMAT}"
+
+if [[ "$FORMAT" == *"matroska"* ]]; then
+	OUTPUT="${BASENAME}_h264.mkv"
+
+	ffmpeg -i "$INPUT" \
+	  -hide_banner -loglevel error -stats \
+	  -map 0:v -map 0:a -map 0:s? \
+	  -c:v libx264 -preset medium -crf 20 -profile:v high -level 4.1 -pix_fmt yuv420p \
+	  -c:a copy \
+	  -c:s copy \
+	  "$OUTPUT"
+else
+	OUTPUT="${BASENAME}_h264.mp4"
+
+	ffmpeg -i "$INPUT" \
+	  -hide_banner -loglevel error -stats \
+	  -c:v libx264 -preset medium -crf 23 -profile:v high -level 4.1 -pix_fmt yuv420p \
+	  -movflags +faststart \
+	  -c:a aac -b:a 256k \
+	  "$OUTPUT"
+fi
+
+bold "Done!"
